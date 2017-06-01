@@ -1,0 +1,17 @@
+.temp {
+  text-align: right;
+  font-size: 90px;
+  color: #004a7c;
+  font-family: 'Carrois Gothic SC', sans-serif;
+  display: inline-block;
+  width: 60%;
+  margin-right: 5%;
+}
+
+.temp.animated {
+  animation-name: left-drive;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+}

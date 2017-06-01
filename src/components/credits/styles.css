@@ -1,0 +1,26 @@
+.credits {
+  color: #F4EEEE;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
+  margin: 30px;
+}
+
+.credits a {
+  color: #005691;
+  text-decoration: none;
+}
+
+.credits a:hover {
+  text-decoration: none;
+  color: #00375e;
+  font-weight: bold;
+}
+
+#heart-symbol {
+  color: #D65F5F;
+  display: inline-block;
+  animation-name: bounce;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}

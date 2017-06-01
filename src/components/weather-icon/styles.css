@@ -1,0 +1,15 @@
+.weather-icon {
+  text-align: left;
+  display: inline-block;
+  font-size: 97px;
+  color: #415865;
+  width: 28%;
+}
+
+.weather-icon.animated {
+  animation-name: right-drive;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+}
