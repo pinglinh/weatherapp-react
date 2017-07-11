@@ -6,34 +6,46 @@ import Credits from './components/credits'
 import Switch from './components/switch'
 import Temp from './components/temperature'
 import WeatherIcon from './components/weather-icon'
+import WeatherDescription from './components/weather-description'
+import Location from './components/location'
+import Header from './components/header'
 
 class App extends Component {
   constructor() {
     super()
-    this.state = {checked: true}
-
+    this.state = {
+      celsius: true,
+      tempValue: 15
+    }
   }
 
   switchUnit = () => {
-    console.log(this.state.checked)
+    console.log(this.state.celsius)
 
-    this.setState({checked: !this.state.checked})
+    let nowCelsius = !this.state.celsius
+    this.setState({
+      celsius: nowCelsius,
+      tempValue: nowCelsius ? 10 : 20
+
+    })
   }
 
   render() {
     return (
       <div>
         <div className="weather-box">
-          <h1 className="header">WEATHER</h1>
-          <Switch checked={this.state.checked} toggle={this.switchUnit}/>
+          <Header />
+          <Switch celsius={this.state.celsius} toggle={this.switchUnit}/>
+
           <div className="temp-icon">
-            <Temp/>
-            <WeatherIcon/>
+            <Temp tempValue={this.state.tempValue} />
+            <WeatherIcon weatherIcon={"11n"} />
+            <WeatherDescription weatherDescription={"Clouds"} />
+            <Location location={"London"} />
           </div>
-          <div className="weather-description"></div>
-          <div className="location"><span className="fa fa-map-marker"></span> <span className="value"></span></div>
+
         </div>
-        <Credits name="hello"/>
+        <Credits name="pinglinh"/>
       </div>
     );
   }
