@@ -17,17 +17,20 @@ class App extends Component {
       celsius: true,
       tempValue: 15
     }
+    this.switchUnit = this.switchUnit.bind(this);
   }
 
-  switchUnit = () => {
-    console.log(this.state.celsius)
+  unit() {
+    if (this.state.celsius) {
+      return "°C";
+    }
+    else {
+      return "°F";
+    }
+  }
 
-    let nowCelsius = !this.state.celsius
-    this.setState({
-      celsius: nowCelsius,
-      tempValue: nowCelsius ? 10 : 20
-
-    })
+  switchUnit() {
+    this.setState({celsius: !this.state.celsius})
   }
 
   render() {
@@ -35,10 +38,11 @@ class App extends Component {
       <div>
         <div className="weather-box">
           <Header />
-          <Switch celsius={this.state.celsius} toggle={this.switchUnit}/>
+          <Switch celsius={this.state.celsius} toggle={this.switchUnit} />
 
           <div className="temp-icon">
-            <Temp tempValue={this.state.tempValue} />
+            <Temp tempValue={this.state.tempValue} unit={this.unit()} />
+
             <WeatherIcon weatherIcon={"11n"} />
             <WeatherDescription weatherDescription={"Clouds"} />
             <Location location={"London"} />

@@ -203,14 +203,14 @@ body {
 }
 
 .onoffswitch-inner:before {
-  content: "°F";
+  content: "°C";
   padding-left: 14px;
   background-color: #EEEEEE;
   color: #005691;
 }
 
 .onoffswitch-inner:after {
-  content: "°C";
+  content: "°F";
   padding-right: 14px;
   background-color: #EEEEEE;
   color: #456173;
