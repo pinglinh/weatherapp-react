@@ -1,7 +1,5 @@
 import React from 'react'
 
-import './styles.css'
-
 const Credits = ({name = 'pinglinh'}) => {
   return (
     <div className="credits">

@@ -1,5 +1,4 @@
 import React from 'react'
-import './styles.css'
 
 const WeatherIcon = ({weatherIcon}) => {
   let icon_to_font = {

@@ -2,55 +2,47 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import Credits from './components/credits'
-import Switch from './components/switch'
-import Temp from './components/temperature'
-import WeatherIcon from './components/weather-icon'
-import WeatherDescription from './components/weather-description'
-import Location from './components/location'
-import Header from './components/header'
+import WeatherView from './WeatherView'
+
+import $ from 'jquery'
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      celsius: true,
-      tempValue: 15
-    }
-    this.switchUnit = this.switchUnit.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = { }
+    this.location_received = this.location_received.bind(this)
   }
 
-  unit() {
-    if (this.state.celsius) {
-      return "°C";
-    }
-    else {
-      return "°F";
+  componentDidMount() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.location_received);
+    } else {
+      let url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=London,uk&units=metric&APPID=2bc5677e833038c7c834f60caef3e3c3&mode=json"
+      $.getJSON(url, this.weather_received);
     }
   }
 
-  switchUnit() {
-    this.setState({celsius: !this.state.celsius})
+  get_weather_url(position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let key = "2bc5677e833038c7c834f60caef3e3c3";
+    let url = `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&APPID=${key}&mode=json`;
+    return url
   }
+
+  location_received(position) {
+    let url = this.get_weather_url(position);
+    $.getJSON(url, this.weather_received);
+  }
+
+  weather_received(weather) {
+    console.log(weather)
+  }
+
 
   render() {
     return (
-      <div>
-        <div className="weather-box">
-          <Header />
-          <Switch celsius={this.state.celsius} toggle={this.switchUnit} />
-
-          <div className="temp-icon">
-            <Temp tempValue={this.state.tempValue} unit={this.unit()} />
-
-            <WeatherIcon weatherIcon={"11n"} />
-            <WeatherDescription weatherDescription={"Clouds"} />
-            <Location location={"London"} />
-          </div>
-
-        </div>
-        <Credits name="pinglinh"/>
-      </div>
+      <WeatherView tempValue={38} weatherIcon={"10d"} weatherDescription={"Too hot"} location={"Mars"} />
     );
   }
 }
